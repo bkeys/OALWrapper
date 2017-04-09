@@ -58,6 +58,7 @@ TARGET_LINK_LIBRARIES(OALWrapper
     ${OGG_LIBRARY}
     ${OPENAL_LIBRARY}
     ${SDL2_LIBRARY}
+    -fPIC
     -pthread
     -ldl
 )
