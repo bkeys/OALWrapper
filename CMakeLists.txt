@@ -43,8 +43,7 @@ SET(all_sources
 add_library(OALWrapper STATIC
     ${all_sources}
 )
-set(VORBISFILE_LIBRARY "")
-set(VORBISENC_LIBRARY "")
+
 TARGET_LINK_LIBRARIES(OALWrapper
     ${VORBISFILE_LIBRARY}
     ${VORBIS_LIBRARY}
