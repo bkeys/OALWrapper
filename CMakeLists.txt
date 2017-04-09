@@ -44,6 +44,7 @@ add_library(OALWrapper STATIC
     ${all_sources}
 )
 set(VORBISFILE_LIBRARY "")
+set(VORBISENC_LIBRARY "")
 TARGET_LINK_LIBRARIES(OALWrapper
     ${VORBISFILE_LIBRARY}
     ${VORBIS_LIBRARY}
@@ -51,12 +52,11 @@ TARGET_LINK_LIBRARIES(OALWrapper
     ${OPENAL_LIBRARY}
     ${SDL2_LIBRARY}
     -pthread
+    -ldl
 )
 set(OAL_INCLUDE_DIR
     "${PROJECT_SOURCE_DIR}/include/"
 )
-
-message(${OAL_INCLUDE_DIR})
 
 include_directories(
 ${OAL_INCLUDE_DIR}
@@ -65,14 +65,14 @@ ${OGG_INCLUDE_DIR}
 ${VORBIS_INCLUDE_DIR}
 )
 
-ADD_EXECUTABLE(SimpleTest EXCLUDE_FROM_ALL tests/Simple/main.cpp)
+ADD_EXECUTABLE(SimpleTest tests/Simple/main.cpp)
 TARGET_LINK_LIBRARIES(SimpleTest OALWrapper)
 
-ADD_EXECUTABLE(PlaySound EXCLUDE_FROM_ALL tests/PlaySound/main.cpp)
+ADD_EXECUTABLE(PlaySound tests/PlaySound/main.cpp)
 TARGET_LINK_LIBRARIES(PlaySound OALWrapper)
 
-ADD_EXECUTABLE(Playlist EXCLUDE_FROM_ALL tests/Playlist/main.cpp)
-TARGET_LINK_LIBRARIES(Playlist OALWrapper)
+#ADD_EXECUTABLE(Playlist tests/Playlist/main.cpp)
+#TARGET_LINK_LIBRARIES(Playlist OALWrapper)
 
-ADD_EXECUTABLE(CustomStream EXCLUDE_FROM_ALL tests/CustomStream/main.cpp)
+ADD_EXECUTABLE(CustomStream tests/CustomStream/main.cpp)
 TARGET_LINK_LIBRARIES(CustomStream OALWrapper)

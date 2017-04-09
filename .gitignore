@@ -9,3 +9,4 @@
 /libOALWrapper.a
 /SimpleTest
 /Makefile
+.cmaketools.json
