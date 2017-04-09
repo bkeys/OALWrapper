@@ -9,6 +9,8 @@ set(CMAKE_MODULE_PATH
  ${PROJECT_SOURCE_DIR}/CMake/Packages/
 )
 
+option(OALWRAPPER_BUILD_STATIC "Build a static library" OFF)
+
 find_package(OGG)
 find_package(Vorbis)
 find_package(OpenAL)
@@ -40,9 +42,15 @@ SET(all_sources
     sources/OAL_Types.cpp
 )
 
+if(OALWRAPPER_BUILD_STATIC)
 add_library(OALWrapper STATIC
     ${all_sources}
 )
+else()
+add_library(OALWrapper SHARED
+    ${all_sources}
+)
+endif()
 
 TARGET_LINK_LIBRARIES(OALWrapper
     ${VORBISFILE_LIBRARY}
@@ -53,6 +61,7 @@ TARGET_LINK_LIBRARIES(OALWrapper
     -pthread
     -ldl
 )
+
 set(OAL_INCLUDE_DIR
     "${PROJECT_SOURCE_DIR}/include/"
 )
